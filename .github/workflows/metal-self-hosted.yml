@@ -1,0 +1,18 @@
+name: Metal (self-hosted)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  metal:
+    runs-on: [self-hosted, macOS, ARM64]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Run Metal CI
+        run: |
+          GG_BUILD_METAL=1 bash ./ci/run.sh \
+            "$HOME/results/llama.cpp" \
+            "$HOME/mnt/llama.cpp"
